@@ -1,0 +1,49 @@
+name: 'Setup'
+description: 'Setup initial config and installation'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  NPM_TOKEN:
+    required: true
+
+  omit_node_modules:
+    description: 'When is true, just Restore node_modules step is executed'
+    default: 'false'
+    
+  omit_install:
+    description: 'When is true, Install packages steps are skip'
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    # Setup node using npm cache
+    - name: Setup Node
+      if: ${{ inputs.omit_install != 'true' }}
+      uses: actions/setup-node@v3
+      with:
+        cache: 'npm'
+
+    # Cache to save node_modules folder
+    - name: Restore node_modules
+      if: ${{ inputs.omit_node_modules != 'true' }}
+      uses: actions/cache@v3
+      id: cache-node_modules
+      with:
+        path: ./node_modules
+        key: |
+          ${{ runner.os }}-node_modules-${{ github.event.number }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node_modules-
+
+    # Install package using NPM
+    - name: Install packages
+      if: |
+        inputs.omit_install != 'true' || inputs.omit_node_modules == 'true'
+      env:
+        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
+      run: npm ci --ignore-scripts
+      shell: bash

@@ -1,0 +1,38 @@
+{
+  "name": "gh-actions",
+  "version": "1.0.0",
+  "description": "Centralized repository for all Milo's GitHub Actions.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "prettier": "prettier src -c",
+    "prepare": "husky install",
+    "commit": "cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiloCreditPlatform/gh-actions.git"
+  },
+  "author": "Akadoshin <anderson344741@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MiloCreditPlatform/gh-actions/issues"
+  },
+  "homepage": "https://github.com/MiloCreditPlatform/gh-actions#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@milocredit/cz-conventional-changelog": "^2.0.0",
+    "@milocredit/eslint-config": "0.2.5",
+    "@typescript-eslint/eslint-plugin": "5.21.0",
+    "@typescript-eslint/parser": "5.21.0",
+    "commitizen": "^4.2.4",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "husky": "^8.0.1",
+    "prettier": "2.6.2",
+    "typescript": "4.7.3"
+  }
+}

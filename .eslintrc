@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "extends": [
+    "@milocredit/eslint-config",
+    "@milocredit/eslint-config/typescript"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "ignorePatterns": [
+    "lib/*.js"
+  ]
+}

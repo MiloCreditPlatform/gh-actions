@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "@milocredit/cz-conventional-changelog/commitlintrc"
+  ],
+  "parserPreset": "@milocredit/cz-conventional-changelog/commitlintrc",
+  "rules": {
+    "@milocredit/jira-id": [
+      0,
+      "never"
+    ]
+  }
+}
