@@ -20,6 +20,9 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
     # Setup node using npm cache
     - name: Setup Node
       if: ${{ inputs.omit_install != 'true' }}
