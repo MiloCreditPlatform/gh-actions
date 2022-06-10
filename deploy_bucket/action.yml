@@ -52,8 +52,8 @@ runs:
       id: deploy_bucket
       if: ${{ inputs.sync_bucket != '' }}
       run: |
-        declare -a arr="${{ inputs.sync_bucket }}"
-        for i in "${arr[@]}"
+        declare -a arrSync="${{ inputs.sync_bucket }}"
+        for i in "${arrSync[@]}"
         do
           echo "_aws s3 sync $i"
           aws s3 sync $i
