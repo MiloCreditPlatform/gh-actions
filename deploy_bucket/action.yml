@@ -60,7 +60,12 @@ runs:
         done
       shell: bash
 
-    - run: echo ${{ steps.deploy_bucket.outputs }}
+    - run: |
+        declare -a arr2="${{ steps.deploy_bucket.outputs }}"
+        for i in "${arr2[@]}"
+        do
+          echo "$i"
+        done
       shell: bash
 
     # Invalidate Cloudfront
