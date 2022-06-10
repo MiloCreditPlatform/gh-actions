@@ -49,6 +49,7 @@ runs:
       shell: bash
 
     - name: Deploying Bucket
+      id: deploy_bucket
       if: ${{ inputs.sync_bucket != '' }}
       run: |
         declare -a arr="${{ inputs.sync_bucket }}"
@@ -57,6 +58,9 @@ runs:
           echo "_aws s3 sync $i"
           aws s3 sync $i
         done
+      shell: bash
+
+    - run: echo ${{ steps.deploy_bucket.outputs }}
       shell: bash
 
     # Invalidate Cloudfront
