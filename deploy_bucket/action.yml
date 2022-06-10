@@ -50,7 +50,7 @@ runs:
 
     - name: Deploying Bucket
       if: ${{ inputs.sync_bucket != '' }}
-      run: inputs.delete_bucket
+      run: inputs.sync_bucket
       shell: bash
 
     # Invalidate Cloudfront
