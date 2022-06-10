@@ -43,14 +43,20 @@ runs:
         declare -a arr="${{ inputs.delete_bucket }}"
         for i in "${arr[@]}"
         do
-          echo "$i"
-          aws s3 rm "$i"
+          echo "_aws s3 rm $i"
+          aws s3 rm $i
         done
       shell: bash
 
     - name: Deploying Bucket
       if: ${{ inputs.sync_bucket != '' }}
-      run: inputs.sync_bucket
+      run: |
+        declare -a arr="${{ inputs.sync_bucket }}"
+        for i in "${arr[@]}"
+        do
+          echo "_aws s3 sync $i"
+          aws s3 sync $i
+        done
       shell: bash
 
     # Invalidate Cloudfront
