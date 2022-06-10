@@ -13,10 +13,10 @@ inputs:
     description: 'Run command to sync the bucket'
     default: ''
 
-  AWS_KEY_DEV:
+  AWS_ACCESS_KEY_ID:
     required: true
 
-  AWS_SECRET_DEV:
+  AWS_SECRET_ACCESS_KEY:
     required: true
 
   INVALIDATE_DIST:
@@ -32,8 +32,8 @@ runs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ inputs.AWS_KEY_DEV }}
-        aws-secret-access-key: ${{ inputs.AWS_SECRET_DEV }}
+        aws-access-key-id: ${{ inputs.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
     - name: Deleting Bucket
@@ -68,5 +68,5 @@ runs:
         DISTRIBUTION: ${{ inputs.INVALIDATION_DIST }}
         PATHS: ${{ inputs.INVALIDATE_PATHS }}
         AWS_REGION: 'us-east-1'
-        AWS_ACCESS_KEY_ID: ${{ inputs.AWS_KEY_DEV }}
-        AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_DEV }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY }}

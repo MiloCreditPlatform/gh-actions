@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: MiloCreditPlatform/gh-actions/deploy_bucket@main
         with:
-          AWS_KEY_DEV: ${{ secrets... }}
-          AWS_SECRET_DEV: ${{ secrets... }}
+          AWS_ACCESS_KEY_ID: ${{ secrets... }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets... }}
           INVALIDATE_DIST: ${{ secrets... }} # invalidate distribution
           INVALIDATE_PATHS: '/something*' # default '/*'
           delete_bucket: aws s3 rm ... 
