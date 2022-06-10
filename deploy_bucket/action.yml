@@ -60,14 +60,6 @@ runs:
         done
       shell: bash
 
-    - run: |
-        declare -a arr2="${{ steps.deploy_bucket.outputs }}"
-        for i in "${arr2[@]}"
-        do
-          echo "$i"
-        done
-      shell: bash
-
     # Invalidate Cloudfront
     - name: Creating invalidation
       if: ${{ inputs.DISTRIBUTION && github.event.inputs.skipSha != github.sha }}
