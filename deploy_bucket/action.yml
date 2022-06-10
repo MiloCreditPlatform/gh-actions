@@ -40,7 +40,7 @@ runs:
       if: ${{ inputs.delete_bucket != '' }}
       # run: inputs.delete_bucket
       run: |
-        declare -a arr="$inputs.delete_bucket"
+        declare -a arr="${{ inputs.delete_bucket }}"
         for i in "${arr[@]}"
         do
           echo "$i"
