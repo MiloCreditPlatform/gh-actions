@@ -1,0 +1,65 @@
+name: 'Deploy S3 Bucket'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  delete_bucket:
+    description: 'Run command to delete the bucket'
+    default: ''
+
+  sync_bucket:
+    description: 'Run command to sync the bucket'
+    default: ''
+
+  AWS_KEY_DEV:
+    required: true
+
+  AWS_SECRET_DEV:
+    required: true
+
+  INVALIDATE_DIST:
+    required: true
+
+  INVALIDATE_PATHS:
+    default: '/*'
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ inputs.AWS_KEY_DEV }}
+        aws-secret-access-key: ${{ inputs.AWS_SECRET_DEV }}
+        aws-region: us-east-1
+
+    - name: Deleting Bucket
+      if: ${{ inputs.delete_bucket != '' }}
+      # run: inputs.delete_bucket
+      run: |
+        declare -a arr="inputs.delete_bucket"
+        for i in "${arr[@]}"
+        do
+          echo "$i"
+          aws s3 rm "$i"
+        done
+      shell: bash
+
+    - name: Deploying Bucket
+      if: ${{ inputs.sync_bucket != '' }}
+      run: inputs.delete_bucket
+      shell: bash
+
+    # Invalidate Cloudfront
+    - name: Creating invalidation
+      if: ${{ inputs.DISTRIBUTION && github.event.inputs.skipSha != github.sha }}
+      uses: chetan/invalidate-cloudfront-action@master
+      env:
+        DISTRIBUTION: ${{ inputs.INVALIDATION_DIST }}
+        PATHS: ${{ inputs.INVALIDATE_PATHS }}
+        AWS_REGION: 'us-east-1'
+        AWS_ACCESS_KEY_ID: ${{ inputs.AWS_KEY_DEV }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_DEV }}

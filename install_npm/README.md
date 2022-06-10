@@ -1,9 +1,9 @@
-# Build packages
-Build node package using `npm`
+# Install packages
+Install node package using `npm`
 
 example:
 ```yml
-name: Build
+name: Install
 
 on:
   pull_request:
@@ -13,8 +13,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
       - uses: MiloCreditPlatform/gh-actions/install_npm@main
         with:
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
