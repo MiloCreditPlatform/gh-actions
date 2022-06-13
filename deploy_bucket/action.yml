@@ -27,6 +27,7 @@ inputs:
 
 runs:
   using: 'composite'
+  if: github.event.inputs.skipSha != github.sha
 
   steps:
     - name: Configure AWS Credentials
@@ -58,6 +59,10 @@ runs:
           echo "_aws s3 sync $i"
           aws s3 sync $i
         done
+      shell: bash
+
+    - name: Testing
+      run: echo ${{ inputs.DISTRIBUTION }}
       shell: bash
 
     # Invalidate Cloudfront
