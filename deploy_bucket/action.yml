@@ -59,17 +59,14 @@ runs:
           aws s3 sync $i
         done
       shell: bash
-
-    - name: Testing
-      run: echo ${{ inputs.INVALIDATE_DIST }}
-      shell: bash
+    # if: github.event.inputs.skipSha != github.sha
 
     # Invalidate Cloudfront
     - name: Creating invalidation
       if: ${{ inputs.INVALIDATE_DIST }}
       uses: chetan/invalidate-cloudfront-action@master
       env:
-        DISTRIBUTION: ${{ inputs.INVALIDATION_DIST }}
+        DISTRIBUTION: ${{ inputs.INVALIDATE_DIST }}
         PATHS: ${{ inputs.INVALIDATE_PATHS }}
         AWS_REGION: 'us-east-1'
         AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID }}
