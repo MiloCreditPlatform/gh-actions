@@ -27,7 +27,6 @@ inputs:
 
 runs:
   using: 'composite'
-  if: github.event.inputs.skipSha != github.sha
 
   steps:
     - name: Configure AWS Credentials
