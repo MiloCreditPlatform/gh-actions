@@ -62,7 +62,7 @@ runs:
 
     # Invalidate Cloudfront
     - name: Creating invalidation
-      if: ${{ inputs.DISTRIBUTION && github.event.inputs.skipSha != github.sha }}
+      if: ${{ inputs.DISTRIBUTION }}
       uses: chetan/invalidate-cloudfront-action@master
       env:
         DISTRIBUTION: ${{ inputs.INVALIDATION_DIST }}
