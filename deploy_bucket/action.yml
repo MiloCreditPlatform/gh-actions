@@ -61,12 +61,12 @@ runs:
       shell: bash
 
     - name: Testing
-      run: echo ${{ inputs.DISTRIBUTION }}
+      run: echo ${{ inputs.INVALIDATE_DIST }}
       shell: bash
 
     # Invalidate Cloudfront
     - name: Creating invalidation
-      if: ${{ inputs.DISTRIBUTION }}
+      if: ${{ inputs.INVALIDATE_DIST }}
       uses: chetan/invalidate-cloudfront-action@master
       env:
         DISTRIBUTION: ${{ inputs.INVALIDATION_DIST }}
