@@ -1,0 +1,7 @@
+name: 'Milo Semantic Release'
+description: 'Initial configuration for the releases generation'
+inputs:
+outputs:
+runs:
+  using: 'node16'
+  main: 'lib/semanticRelease.js'
