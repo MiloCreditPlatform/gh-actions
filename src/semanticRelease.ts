@@ -1,1 +1,1 @@
-console.log('hola');
+console.log('test semantic release');
