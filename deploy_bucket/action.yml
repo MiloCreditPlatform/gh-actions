@@ -36,20 +36,18 @@ runs:
         aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - run: |
-        echo "${{ github.action_path }}" >> $GITHUB_PATH
-        git update-index --chmod=+x deployBucket.sh
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash     
 
     - name: Deleting Bucket
       if: ${{ inputs.remove_bucket != '' }}
-      run: deployBucket.sh "${{ inputs.remove_bucket }}" remove
+      run: git update-index --chmod=+x deployBucket.sh "${{ inputs.remove_bucket }}" remove
       shell: bash
 
     - name: Deploying Bucket
       id: deploy_bucket
       if: ${{ inputs.sync_bucket != '' }}
-      run: deployBucket.sh "${{ inputs.sync_bucket }}" sync
+      run: git update-index --chmod=+x deployBucket.sh "${{ inputs.sync_bucket }}" sync
       shell: bash
 
     # Invalidate Cloudfront
