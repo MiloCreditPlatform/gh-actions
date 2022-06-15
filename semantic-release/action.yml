@@ -1,6 +1,8 @@
 name: 'Milo Semantic Release'
 description: 'Initial configuration for the releases generation'
 inputs:
+  who-to-greet:
+    default: 'Jhon'
 outputs:
 runs:
   using: 'node16'
