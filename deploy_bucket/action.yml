@@ -36,8 +36,8 @@ runs:
         aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - run: ls
-      shell: bash
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash     
 
     - name: Deleting Bucket
       if: ${{ inputs.remove_bucket != '' }}
