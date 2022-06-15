@@ -5,4 +5,4 @@ inputs:
     default: 'Jhon'
 runs:
   using: 'node16'
-  main: '../dist/semanticRelease.js'
+  main: '../dist/semanticRelease/index.js'
