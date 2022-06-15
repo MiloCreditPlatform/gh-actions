@@ -41,13 +41,13 @@ runs:
 
     - name: Deleting Bucket
       if: ${{ inputs.remove_bucket != '' }}
-      run: deployBucket.sh "${{ inputs.remove_bucket }}" remove
+      run: ./deployBucket.sh "${{ inputs.remove_bucket }}" remove
       shell: bash
 
     - name: Deploying Bucket
       id: deploy_bucket
       if: ${{ inputs.sync_bucket != '' }}
-      run: deployBucket.sh "${{ inputs.sync_bucket }}" sync
+      run: ./deployBucket.sh "${{ inputs.sync_bucket }}" sync
       shell: bash
 
     # Invalidate Cloudfront
