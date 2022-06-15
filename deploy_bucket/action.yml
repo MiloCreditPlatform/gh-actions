@@ -36,6 +36,8 @@ runs:
         aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
+    - run: ls
+
     - name: Deleting Bucket
       if: ${{ inputs.remove_bucket != '' }}
       run: deployBucket.sh "${{ inputs.remove_bucket }}" remove
