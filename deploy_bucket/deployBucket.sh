@@ -14,7 +14,7 @@ if [ $input_command == "sync" ]; then
     do
         bucket_values=($bucket)
         echo "Syncing bucket: ${bucket_values[0]} to: ${bucket_values[1]}"
-        aws s3 sync s3://${bucket_values[0]} ${bucket_values[1]}
+        aws s3 sync ${bucket_values[1]} s3://${bucket_values[0]}
     done
 # Remove the bucket from AWS S3
 elif [ $input_command == "remove" ]; then
