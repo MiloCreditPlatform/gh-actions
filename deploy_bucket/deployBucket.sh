@@ -22,6 +22,7 @@ elif [ $input_command == "remove" ]; then
     do
         bucket_values=($bucket)
         echo "Removing bucket: ${bucket_values[0]}"
+        echo aws s3 ls s3://${bucket_values[0]};
         # Validate the bucket exists
         if [ aws s3 ls s3://${bucket_values[0]} ]; then
             echo "Bucket exists, removing bucket: ${bucket_values[0]}"
