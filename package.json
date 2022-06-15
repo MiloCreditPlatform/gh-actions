@@ -24,7 +24,7 @@
   "homepage": "https://github.com/MiloCreditPlatform/gh-actions#readme",
   "devDependencies": {
     "@commitlint/cli": "17.0.2",
-    "@milocredit/cz-conventional-changelog": "2.0.0",
+    "@milocredit/cz-conventional-changelog": "2.1.1",
     "@milocredit/eslint-config": "0.2.5",
     "@typescript-eslint/eslint-plugin": "5.21.0",
     "@typescript-eslint/parser": "5.21.0",
