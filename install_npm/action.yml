@@ -9,10 +9,14 @@ inputs:
   NPM_TOKEN:
     required: true
 
+  branch:
+    description: 'branch to deploy'
+    default: 'develop'
+
   omit_node_modules:
     description: 'When is true, just Restore node_modules step is executed'
     default: 'false'
-    
+
   omit_install:
     description: 'When is true, Install packages steps are skip'
     default: 'false'
@@ -22,6 +26,8 @@ runs:
   steps:
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.branch }}
 
     # Setup node using npm cache
     - name: Setup Node
