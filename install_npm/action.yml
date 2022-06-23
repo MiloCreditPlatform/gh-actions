@@ -26,7 +26,7 @@ runs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        fetch-depth: '0'
+        fetch-depth: 0
         ref: ${{ inputs.branch }}
 
     # Setup node using npm cache
