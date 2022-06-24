@@ -6,9 +6,6 @@ branding:
   color: 'blue'
 
 inputs:
-  NPM_TOKEN:
-    required: true
-
   branch:
     description: 'branch to deploy'
 
@@ -53,6 +50,6 @@ runs:
       if: |
         inputs.omit_install != 'true' || inputs.omit_node_modules == 'true'
       env:
-        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: npm ci --ignore-scripts
       shell: bash
