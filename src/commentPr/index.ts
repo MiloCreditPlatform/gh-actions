@@ -9,7 +9,6 @@ try {
   if (message === '') {
     const error = 'comment message is required';
     core.setFailed(error);
-    throw new Error(error);
   }
 
   const pullRequest: number = context.payload.pull_request?.number || 0;
