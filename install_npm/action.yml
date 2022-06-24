@@ -14,7 +14,7 @@ inputs:
     default: 'false'
 
   omit_install:
-    description: 'When is true, Install packages steps are skip'
+    description: 'When is true, Install packages step is skip'
     default: 'false'
 
 runs:
@@ -32,6 +32,11 @@ runs:
       uses: actions/setup-node@v3
       with:
         cache: 'npm'
+
+    - run: |
+        echo ${{ toJSON(env) }}
+        echo ${{ toJSON(secrets) }}
+      shell: bash
 
     # Cache to save node_modules folder
     - name: Restore node_modules
