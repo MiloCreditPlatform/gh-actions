@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc --build",
     "package:semantic-release": "ncc build lib/semanticRelease/index.js -o dist/semanticRelease -m",
+    "package:comment_pr": "ncc build lib/commentPr/index.js -o dist/commentPr -m",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",

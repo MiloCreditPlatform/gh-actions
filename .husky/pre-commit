@@ -3,4 +3,5 @@
 
 npm run build
 npm run package:semantic-release
+npm run package:comment_pr
 git add dist
