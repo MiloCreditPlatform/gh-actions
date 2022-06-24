@@ -3,21 +3,25 @@ import * as github from '@actions/github';
 
 try {
   const { context } = github;
+  const githubToken: string = core.getInput('GITHUB_TOKEN');
+
+  /** if the github token is empty, it'll returns an error */
+  if (githubToken === '') {
+    throw new Error('github token is required');
+  }
+
   const message: string = core.getInput('message');
 
   /** if the message is empty, it'll returns an error */
   if (message === '') {
-    const error = 'comment message is required';
-    core.setFailed(error);
+    throw new Error('comment message is required');
   }
 
   const pullRequest: number = context.payload.pull_request?.number || 0;
 
   /** if the pull request number doesn't exits, it'll returns an error */
   if (pullRequest === 0) {
-    const error = 'pull request number is not valid';
-    core.setFailed(error);
-    throw new Error(error);
+    throw new Error('pull request number is not valid');
   }
 
   console.log('message', message, pullRequest);

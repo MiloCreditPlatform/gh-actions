@@ -14,4 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: MiloCreditPlatform/gh-actions/comment_pr@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: Hello world
 ```

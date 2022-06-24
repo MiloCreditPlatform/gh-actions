@@ -7,6 +7,10 @@ branding:
 description: 'Comments a pull request with a message'
 
 inputs:
+  GITHUB_TOKEN:
+    description: 'Github token'
+    required: true
+
   message:
     description: 'Message that should be printed in the pull request'
     required: true
