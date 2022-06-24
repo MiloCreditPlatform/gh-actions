@@ -13,8 +13,13 @@ try {
   // const payload = JSON.stringify(github.context.payload, undefined, 2);
   // console.log(`The event payload: ${payload}`);
 
-  exec.exec('npm', ['install', '-g', 'semantic-release', ' --silent']);
-  exec.exec('npx', [' semantic-release']);
+  exec.exec('npm', [
+    'install',
+    '--location=global',
+    'semantic-release',
+    ' --silent',
+  ]);
+  exec.exec('npx', ['semantic-release']);
 
   console.log(JSON.stringify(process.env, undefined, 2));
 } catch (error) {
