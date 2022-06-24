@@ -1,8 +1,11 @@
 name: 'Milo Semantic Release'
+
 description: 'Initial configuration for the releases generation'
+
 inputs:
   who-to-greet:
     default: 'Jhon'
+    
 runs:
   using: 'node16'
   main: '../dist/semanticRelease/index.js'

@@ -15,7 +15,6 @@ jobs:
     steps:
       - uses: MiloCreditPlatform/gh-actions/install_npm@main
         with:
-          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
           omit_install: Boolean
           omit_node_modules: Boolean
 ```

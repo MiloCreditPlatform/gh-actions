@@ -1,0 +1,16 @@
+name: 'Comment Pull Request'
+
+branding:
+  icon: 'message-circle'
+  color: 'blue'
+
+description: 'Comments a pull request with a message'
+
+inputs:
+  message:
+    description: 'Message that should be printed in the pull request'
+    required: true
+
+runs:
+  using: 'node16'
+  main: '../dist/commentPr/index.js'
