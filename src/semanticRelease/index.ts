@@ -14,11 +14,7 @@ const app = async () => {
     // const payload = JSON.stringify(github.context.payload, undefined, 2);
     // console.log(`The event payload: ${payload}`);
 
-    await exec.exec('npm', [
-      'install',
-      '--location=global',
-      'semantic-release',
-    ]);
+    await exec.exec('npm', ['install', 'semantic-release', '--silent']);
     await exec.exec('npx', ['semantic-release']);
 
     console.log(JSON.stringify(process.env, undefined, 2));
