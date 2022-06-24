@@ -16,6 +16,7 @@ const app = async () => {
 
     await exec.exec('npm', ['install', 'semantic-release']);
     await exec.exec('npx', ['semantic-release']);
+    await exec.exec('git', ['status']);
 
     console.log(JSON.stringify(process.env, undefined, 2));
   } catch (error) {
