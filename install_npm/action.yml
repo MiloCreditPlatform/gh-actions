@@ -36,6 +36,10 @@ runs:
     - name: Log
       run: echo ${{env}}
       shell: bash
+      
+    - name: shell
+      run: install.sh
+      shell: bash
 
     # Cache to save node_modules folder
     - name: Restore node_modules
@@ -56,6 +60,3 @@ runs:
       run: npm ci --ignore-scripts
       shell: bash
 
-    - name: shell
-      run: install.sh
-      shell: bash
