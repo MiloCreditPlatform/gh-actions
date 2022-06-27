@@ -33,10 +33,6 @@ runs:
       with:
         cache: 'npm'
 
-    - name: Log
-      run: echo ${{toJSON(env)}}
-      shell: bash
-
     # Cache to save node_modules folder
     - name: Restore node_modules
       if: ${{ inputs.omit_node_modules != 'true' }}
