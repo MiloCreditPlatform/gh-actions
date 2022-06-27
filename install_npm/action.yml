@@ -6,15 +6,19 @@ branding:
   color: 'blue'
 
 inputs:
+  NPM_TOKEN:
+    required: true
+
   branch:
     description: 'branch to deploy'
+    default: 'develop'
 
   omit_node_modules:
     description: 'When is true, just Restore node_modules step is executed'
     default: 'false'
 
   omit_install:
-    description: 'When is true, Install packages step is skip'
+    description: 'When is true, Install packages steps are skip'
     default: 'false'
 
 runs:
@@ -23,7 +27,6 @@ runs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0
         ref: ${{ inputs.branch }}
 
     # Setup node using npm cache
@@ -49,5 +52,7 @@ runs:
     - name: Install packages
       if: |
         inputs.omit_install != 'true' || inputs.omit_node_modules == 'true'
+      env:
+        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
       run: npm ci --ignore-scripts
       shell: bash
