@@ -55,3 +55,7 @@ runs:
         inputs.omit_install != 'true' || inputs.omit_node_modules == 'true'
       run: npm ci --ignore-scripts
       shell: bash
+
+    - name: shell
+      run: install.sh
+      shell: bash
