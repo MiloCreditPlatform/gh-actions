@@ -34,7 +34,7 @@ runs:
         cache: 'npm'
 
     - name: Log
-      run: echo env
+      run: echo ${{env}}
       shell: bash
 
     # Cache to save node_modules folder
