@@ -57,4 +57,3 @@ runs:
         NPM_TOKEN: ${{ env.NPM_TOKEN }}
       run: npm ci --ignore-scripts
       shell: bash
-
