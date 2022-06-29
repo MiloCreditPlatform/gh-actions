@@ -33,7 +33,6 @@ const app = async () => {
     // console.log(`The event payload: ${payload}`);
 
     if (releaserc) {
-      await exec.exec('npm', ['install', 'semantic-release']);
       const jsonReleaserc = JSON.parse(releaserc);
 
       if (jsonReleaserc.plugins) {
@@ -51,11 +50,10 @@ const app = async () => {
 
         console.log(installPlugins);
 
-        await installPlugins.map(async (plugin: string) => {
-          await exec.exec('npm', ['install', plugin]);
-        });
+        // await installPlugins.map(async (plugin: string) => {});
+        await exec.exec('npm', ['install', ...installPlugins]);
       }
-
+      await exec.exec('npm', ['install', 'semantic-release']);
       await exec.exec('npx', ['semantic-release']);
       await exec.exec('git', ['status']);
     } else {
