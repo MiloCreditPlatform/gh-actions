@@ -9,6 +9,7 @@ const app = async () => {
     const nameToGreet = core.getInput('who-to-greet');
     console.log(`Hello ${nameToGreet}!`);
     console.log(JSON.stringify(process.env, undefined, 2));
+    await exec.exec('ls');
     // const time = new Date().toTimeString();
     // core.setOutput('time', time);
     // Get the JSON webhook payload for the event that triggered the workflow
