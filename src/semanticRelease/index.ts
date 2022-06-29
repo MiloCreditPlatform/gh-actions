@@ -13,11 +13,15 @@ const app = async () => {
     const workSPace = process.env.GITHUB_WORKSPACE || '';
 
     console.log(`Hello ${nameToGreet}!`);
-    console.log(JSON.stringify(process.env, undefined, 2), workSPace, __dirname);
-    const releaserc = fs
-      .readFileSync(path.join(workSPace, '.releaserc'))
-      .toJSON();
-    console.log(releaserc);
+    console.log(
+      JSON.stringify(process.env, undefined, 2),
+      workSPace,
+      __dirname,
+    );
+    const releaserc = fs.readFileSync(path.join(workSPace, '.releaserc'), {
+      encoding: 'utf8',
+    });
+    console.log(path.join(workSPace, '.releaserc'), releaserc);
     // const time = new Date().toTimeString();
     // core.setOutput('time', time);
     // Get the JSON webhook payload for the event that triggered the workflow
