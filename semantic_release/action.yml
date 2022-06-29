@@ -5,10 +5,7 @@ description: 'Initial configuration for the releases generation'
 inputs:
   who-to-greet:
     default: 'Jhon'
-    
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+
 runs:
   using: 'node16'
   main: '../dist/semanticRelease/index.js'
