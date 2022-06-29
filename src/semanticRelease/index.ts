@@ -12,7 +12,7 @@ const app = async () => {
     const nameToGreet = core.getInput('who-to-greet');
     console.log(`Hello ${nameToGreet}!`);
     console.log(JSON.stringify(process.env, undefined, 2), __dirname);
-    const releaserc = fs.readFileSync('.releaserc');
+    const releaserc = fs.readFileSync('.releaserc').toJSON();
     console.log(releaserc);
     // const time = new Date().toTimeString();
     // core.setOutput('time', time);
