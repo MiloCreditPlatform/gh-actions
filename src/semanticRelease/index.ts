@@ -3,16 +3,20 @@ import * as core from '@actions/core';
 // import * as github from '@actions/github';
 import * as exec from '@actions/exec';
 
-// import path from 'node:path';
+import path from 'node:path';
 import fs from 'node:fs';
 
 const app = async () => {
   try {
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput('who-to-greet');
+    const workSPace = process.env.GITHUB_WORKSPACE || '';
+
     console.log(`Hello ${nameToGreet}!`);
-    console.log(JSON.stringify(process.env, undefined, 2), __dirname);
-    const releaserc = fs.readFileSync('.releaserc').toJSON();
+    console.log(JSON.stringify(process.env, undefined, 2), workSPace, __dirname);
+    const releaserc = fs
+      .readFileSync(path.join(workSPace, '.releaserc'))
+      .toJSON();
     console.log(releaserc);
     // const time = new Date().toTimeString();
     // core.setOutput('time', time);
