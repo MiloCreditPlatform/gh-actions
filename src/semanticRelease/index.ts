@@ -8,6 +8,7 @@ const app = async () => {
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput('who-to-greet');
     console.log(`Hello ${nameToGreet}!`);
+    console.log(JSON.stringify(process.env, undefined, 2));
     // const time = new Date().toTimeString();
     // core.setOutput('time', time);
     // Get the JSON webhook payload for the event that triggered the workflow
@@ -17,8 +18,6 @@ const app = async () => {
     await exec.exec('npm', ['install', 'semantic-release']);
     await exec.exec('npx', ['semantic-release']);
     await exec.exec('git', ['status']);
-
-    console.log(JSON.stringify(process.env, undefined, 2));
   } catch (error) {
     core.setFailed(error as Error);
   }
