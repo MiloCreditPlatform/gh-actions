@@ -26,9 +26,21 @@ const app = async () => {
       const jsonReleaserc = JSON.parse(releaserc);
 
       if (jsonReleaserc.plugins) {
-        console.log(
-          jsonReleaserc.plugins.flat().filter((a) => typeof a === 'string'),
-        );
+        const defaultPlugins = new Set([
+          '@semantic-release/commit-analyzer',
+          '@semantic-release/release-notes-generator',
+          '@semantic-release/npm',
+          '@semantic-release/github',
+        ]);
+        const installPlugins = jsonReleaserc.plugins
+          .flat()
+          .filter((plugin: any) => typeof plugin === 'string' && !defaultPlugins.has(plugin));
+
+        console.log(installPlugins);
+
+        await installPlugins.map(async (plugin: string) => {
+          await exec.exec('npm', ['install', plugin]);
+        });
       }
     }
     // const time = new Date().toTimeString();
