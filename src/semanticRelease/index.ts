@@ -10,6 +10,7 @@ const app = async () => {
   try {
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput('who-to-greet');
+    /** repository workspace where the action is used */
     const workSPace = process.env.GITHUB_WORKSPACE || '';
 
     console.log(`Hello ${nameToGreet}!`);
@@ -21,7 +22,15 @@ const app = async () => {
     const releaserc = fs.readFileSync(path.join(workSPace, '.releaserc'), {
       encoding: 'utf8',
     });
-    console.log(path.join(workSPace, '.releaserc'), releaserc);
+    if (releaserc) {
+      const jsonReleaserc = JSON.parse(releaserc);
+
+      if (jsonReleaserc.plugins) {
+        console.log(
+          jsonReleaserc.plugins.flat().filter((a) => typeof a === 'string'),
+        );
+      }
+    }
     // const time = new Date().toTimeString();
     // core.setOutput('time', time);
     // Get the JSON webhook payload for the event that triggered the workflow
