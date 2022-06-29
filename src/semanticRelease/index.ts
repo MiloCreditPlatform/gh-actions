@@ -34,7 +34,8 @@ const app = async () => {
 
     if (releaserc) {
       const jsonReleaserc = JSON.parse(releaserc);
-      await exec.exec('npm', ['install', 'semantic-release']);
+
+      await exec.exec('npm', ['ci', 'semantic-release']);
 
       if (jsonReleaserc.plugins) {
         const defaultPlugins = new Set([
@@ -49,11 +50,9 @@ const app = async () => {
             typeof plugin === 'string' && !defaultPlugins.has(plugin),
         );
 
-        console.log(installPlugins);
-
-        // await installPlugins.map(async (plugin: string) => {});
-        await exec.exec('npm', ['install', ...installPlugins]);
+        await exec.exec('npm', ['ci', ...installPlugins]);
       }
+
       await exec.exec('npx', ['semantic-release']);
       await exec.exec('git', ['status']);
     } else {
