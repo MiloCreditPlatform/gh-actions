@@ -49,7 +49,5 @@ runs:
     - name: Install packages
       if: |
         inputs.omit_install != 'true' || inputs.omit_node_modules == 'true'
-      env:
-        NPM_TOKEN: ${{ env.NPM_TOKEN }}
       run: npm ci --ignore-scripts
       shell: bash
