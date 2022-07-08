@@ -35,7 +35,7 @@ const app = async () => {
     if (releaserc) {
       const jsonReleaserc = JSON.parse(releaserc);
 
-      await exec.exec('npm', ['install', '-g', 'semantic-release']);
+      await exec.exec('npm', ['install', 'semantic-release']);
 
       if (jsonReleaserc.plugins) {
         const defaultPlugins = new Set([
@@ -50,12 +50,12 @@ const app = async () => {
             typeof plugin === 'string' && !defaultPlugins.has(plugin),
         );
 
-        await exec.exec('npm', ['install', '-g', ...installPlugins]);
+        await exec.exec('npm', ['install', ...installPlugins]);
       }
 
       await exec.exec('git', ['status']);
       await exec.exec('ls', ['-l']);
-      await exec.exec('npm', ['run', 'semantic-release', '--dry-run=false']);
+      await exec.exec('npx', ['semantic-release', '--dry-run=false']);
     } else {
       core.setFailed(`file config: ${releasercFile} NOT found`);
     }
