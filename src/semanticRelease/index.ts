@@ -59,6 +59,7 @@ const app = async () => {
         '--branches develop',
       ]);
       await exec.exec('git', ['status']);
+      await exec.exec('ls', ['-l']);
     } else {
       core.setFailed(`file config: ${releasercFile} NOT found`);
     }
