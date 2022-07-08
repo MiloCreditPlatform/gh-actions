@@ -53,7 +53,11 @@ const app = async () => {
         await exec.exec('npm', ['install', '-g', ...installPlugins]);
       }
 
-      await exec.exec('npx', ['semantic-release', '--dry-run=false']);
+      await exec.exec('npx', [
+        'semantic-release',
+        '--dry-run=false',
+        '--branches develop',
+      ]);
       await exec.exec('git', ['status']);
     } else {
       core.setFailed(`file config: ${releasercFile} NOT found`);
